@@ -95,3 +95,30 @@ document.getElementById("read-more-btn").addEventListener("click", function () {
     this.textContent = "Read More";
   }
 });
+// animation after 40% scroll
+
+function handleScroll() {
+  let viewportHeight = window.innerHeight;
+
+  sections.forEach((section, index) => {
+    let rect = section.getBoundingClientRect();
+    let offset = viewportHeight * 0.4; // Adjust this percentage
+
+    if (rect.top < viewportHeight - offset && rect.bottom >= 0) {
+      // Section is scrolled more than 60% visible
+      section.classList.add("show-animate");
+
+      // Trigger animation for the next section
+      if (index < sections.length - 1) {
+        let nextSection = sections[index + 1];
+        let nextRect = nextSection.getBoundingClientRect();
+
+        if (nextRect.top < viewportHeight - offset && nextRect.bottom >= 0) {
+          nextSection.classList.add("show-animate");
+        }
+      }
+    } else {
+      section.classList.remove("show-animate");
+    }
+  });
+}

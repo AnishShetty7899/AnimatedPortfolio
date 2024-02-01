@@ -107,7 +107,7 @@ function handleScroll() {
     let offset = viewportHeight * 0.35; // Adjust this percentage
 
     if (rect.top < viewportHeight - offset && rect.bottom >= 0) {
-      // Section is scrolled more than 30% visible
+      // Section is scrolled more than 60% visible
       section.classList.add("show-animate");
 
       // Trigger animation for the next section
@@ -127,11 +127,18 @@ function handleScroll() {
   ticking = false;
 }
 
-window.addEventListener("scroll", () => {
-  if (!ticking) {
-    // Use requestAnimationFrame for smoother scrolling
-    requestAnimationFrame(handleScroll);
-    ticking = true;
-  }
-});
+window.addEventListener("scroll", handleScroll, { passive: true });
+
+// Use requestAnimationFrame for smoother scrolling
+window.addEventListener(
+  "scroll",
+  () => {
+    if (!ticking) {
+      requestAnimationFrame(handleScroll);
+      ticking = true;
+    }
+  },
+  { passive: true }
+);
+
 

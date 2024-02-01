@@ -122,3 +122,7 @@ function handleScroll() {
     }
   });
 }
+window.addEventListener("scroll", () => {
+  // Use requestAnimationFrame for smoother scrolling
+  requestAnimationFrame(handleScroll);
+});

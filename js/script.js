@@ -104,10 +104,10 @@ function handleScroll() {
 
   sections.forEach((section, index) => {
     let rect = section.getBoundingClientRect();
-    let offset = viewportHeight * 0.4; // Adjust this percentage
+    let offset = viewportHeight * 0.35; // Adjust this percentage
 
     if (rect.top < viewportHeight - offset && rect.bottom >= 0) {
-      // Section is scrolled more than 60% visible
+      // Section is scrolled more than 30% visible
       section.classList.add("show-animate");
 
       // Trigger animation for the next section

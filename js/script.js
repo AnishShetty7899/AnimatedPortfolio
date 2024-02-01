@@ -97,6 +97,8 @@ document.getElementById("read-more-btn").addEventListener("click", function () {
 });
 // animation after 40% scroll
 
+let ticking = false;
+
 function handleScroll() {
   let viewportHeight = window.innerHeight;
 
@@ -121,9 +123,15 @@ function handleScroll() {
       section.classList.remove("show-animate");
     }
   });
+
+  ticking = false;
 }
 
 window.addEventListener("scroll", () => {
-  // Use requestAnimationFrame for smoother scrolling
-  requestAnimationFrame(handleScroll);
+  if (!ticking) {
+    // Use requestAnimationFrame for smoother scrolling
+    requestAnimationFrame(handleScroll);
+    ticking = true;
+  }
 });
+
